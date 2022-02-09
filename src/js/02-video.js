@@ -14,4 +14,16 @@ player.on('timeupdate', throttle(saveTimeInLocal, 1000));
 
 const stopTimeInVimeo = localStorage.getItem(LOCAL_KEY);
 
-player.setCurrentTime(stopTimeInVimeo);
+player
+  .setCurrentTime(stopTimeInVimeo)
+  .then(function (seconds) {
+    console.log(seconds);
+  })
+  .catch(function (error) {
+    switch (error.name) {
+      case 'RangeError':
+        break;
+      default:
+        break;
+    }
+  });
